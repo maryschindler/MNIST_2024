@@ -1,2 +1,51 @@
 # MNIST_2024
 Classifying handwritten digits (MNIST dataset)
+
+Last Updated: 06/09/24
+
+
+**Outstanding Tasks**
+1. Finish README
+
+
+**Index**
+1. Placeholder
+
+
+## Analysis Goal
+Classify handwritten digits from the MNIST database
+
+
+### Modeling
+#### Simple feed-forward neural network
+A fully connected neural network, taking a 28x28 greyscale image input, flattening, passing it through three hidden dense layers with ReLU activation, outputing a probability distribution over 10 classes using softmax activation:
+
+**Model Architecture**
+1. Input: (28, 28, 1)
+2. Flatten: (784)
+3. Dense: (784) to (512), ReLU
+4. Dense: (512) to (256), ReLU
+5. Dense: (256) to (128), ReLU
+6. Output Dense: (128) to (10), softmax
+
+The model was compiled with Adam optimizer, categorical cross-entropy loss, and accuracy as the evaluation metric. The model was trained for 20 epochs.
+
+
+#### Feed-forward neural network with data augmentation
+Using the same neural network described above, data augmentation is applied to improve the model's generalizability:
+
+**Data Augmentation**
+- Rotation: Randomly rotate up to 10 degrees
+- Zoom: Randomly zoom in up to 10%
+- Width shift: Randomly shift horizontally up to 10% of width
+- Height shift: Randomly shift vertically up to 10% of height
+
+The model was compiled with Adam optimizer, categorical cross-entropy loss, and accuracy as the evaluation metric. The model was trained for 20 epochs. 
+
+
+#### Covolutional neural network with data augmentation
+A convolutional neural network (CNN), taking a 28x28 grayscale image input, processing it through several convolutional and pooling layers, followed by dense layers, and outputing a probability distribution over 10 classes using softmax activation. Data augmentation is applied to the training data to improve the model's generalization. The same data augmentation applied to the feed-forward neural network was used to improve the model's generalizability:
+
+**Model Architecture**
+1. Input: (28, 28, 1)
+    - Conv2D with 32 filters, kernel size (3, 3), ReLU 
